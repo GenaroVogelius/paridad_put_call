@@ -1,20 +1,39 @@
 import math
 
-
+# e ** rt es traido al valor presente.
 class ParidadPutCall():
     def __init__(self):
         self.e = math.e
     
-    def calculate_call_price(self, put, S, K, r, T):
+    def call_sint_long(self, put, S, K, r, T):
         precio_call = (put + S) - (K*self.e**(-r*T))
         return precio_call
 
-    def calculate_put_price(self, call, S, K, r, T):
+    def put_sint_long(self, call, S, K, r, T):
         precio_put = (call + K * self.e**(-r*T)) -S
         return precio_put
+    
+
+    def call_sint_short(self, put, S, K, r, T):
+        precio_call = (-put - S) + (K*self.e**(-r*T))
+        return precio_call
+    
+    def put_sint_short(self, call, S, K, r, T):
+        precio_put = (-call - K * self.e**(-r*T)) + S
+        return precio_put
+
 
     def is_parity(self, call, put, S, K, r, T):
-        return call + K * self.e**(-r * T) == put + S
+        lado_call = round(call + K * self.e**(-r * T), 2)
+        lado_put = round(put + S,2)
+
+        if lado_call == lado_put:
+            return "Hay paridad"
+        elif lado_call < lado_put:
+            return f"El call esta más barato en relación al put, ya que el call cuesta {lado_call} y el put {lado_put}"
+        elif lado_call > lado_put:
+            return f"El put esta mas barato en relación al call, ya que el call cuesta {lado_call} y el put {lado_put}"
+
     
 
     def calculate_limite_inferior_call(self, S, K, r, T):

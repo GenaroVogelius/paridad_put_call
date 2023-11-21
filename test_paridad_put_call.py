@@ -9,7 +9,7 @@ class TestParidadPutCall(unittest.TestCase):
         # Initialize SinteticoMaker instance
         self.Paridad = ParidadPutCall()
 
-    def test_calculate_call_price(self):
+    def test_call_sint_long(self):
         put = 6.639993438941417
         S = 200
         K = 190
@@ -17,11 +17,11 @@ class TestParidadPutCall(unittest.TestCase):
         T = 0.2
         expected_result = (24.090000000000003)
 
-        result = self.Paridad.calculate_call_price(put, S, K, r, T)
+        result = self.Paridad.call_sint_long(put, S, K, r, T)
 
         self.assertEqual(result, expected_result)
 
-    def test_calculate_put_price(self):
+    def test_put_sint_long(self):
         call = 24.090000000000003
         S = 200
         K = 190
@@ -29,7 +29,29 @@ class TestParidadPutCall(unittest.TestCase):
         T = 0.2
         expected_result = (6.639993438941417)
 
-        result = self.Paridad.calculate_put_price(call, S, K, r, T)
+        result = self.Paridad.put_sint_long(call, S, K, r, T)
+
+        self.assertEqual(result, expected_result)
+
+    def test_call_sint_short(self):
+        S=40; 
+        K=42; 
+        put=4; 
+        T=30/365; 
+        r= 0.30
+        expected_result= -3.0229528621658233
+        result = self.Paridad.call_sint_short(put, S, K, r, T)
+
+        self.assertEqual(result, expected_result)
+
+    def test_put_sint_short(self):
+        S=40; 
+        K=42; 
+        call=2; 
+        T=30/365; 
+        r= 0.30
+        expected_result= -2.9770471378341767
+        result = self.Paridad.put_sint_short(call, S, K, r, T)
 
         self.assertEqual(result, expected_result)
 
@@ -40,7 +62,7 @@ class TestParidadPutCall(unittest.TestCase):
         K = 190
         r = 0.2
         T = 0.2
-        expected_result = (True)
+        expected_result = ("Hay paridad")
 
         result = self.Paridad.is_parity(call, put, S, K, r, T)
 
