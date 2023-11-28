@@ -1,6 +1,7 @@
 import math
 
-# e ** rt es traido al valor presente.
+# e ** rt es traido al valor presente, valor del precio de ejercicio traido al valor presente.
+
 class ParidadPutCall():
     def __init__(self):
         self.e = math.e
@@ -30,9 +31,9 @@ class ParidadPutCall():
         if lado_call == lado_put:
             return "Hay paridad"
         elif lado_call < lado_put:
-            return f"El call esta más barato en relación al put, ya que el call cuesta {lado_call} y el put {lado_put}"
+            return f"El call esta más barato en relación al put, ya que el call cuesta {lado_call} y el put {lado_put}, entonces deberias vender el put, comprar el call y con el dinero sobrante invertirlo a tasa"
         elif lado_call > lado_put:
-            return f"El put esta mas barato en relación al call, ya que el call cuesta {lado_call} y el put {lado_put}"
+            return f"El put esta mas barato en relación al call, ya que el call cuesta {lado_call} y el put {lado_put}, entonces deberias vender el call y comprar el put y la acción."
 
     
 
@@ -70,6 +71,3 @@ class ParidadPutCall():
 
 
 P = ParidadPutCall()
-# print(P.do_arbitraje_in_call(S = 200, K = 190, r = 0.8, T = 0.2))
-
-# print(P.do_arbitraje_in_put(S = 150, K = 190, r = 0.2, T = 0.2))

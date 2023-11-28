@@ -4,6 +4,12 @@ from paridad_put_call import ParidadPutCall
 
 Paridad = ParidadPutCall()
 
+call = 10
+K= 318
+S = 298
+r=0
+T=0
+print(Paridad.put_sint_long(call, S, K, r, T))
 
 # si falta un año T = 0.1
 # T tiene que ser siempre en años.
@@ -28,6 +34,6 @@ S=40; K=42; call=2; put=4; T=30/365; r= 0.30
 # print(Paridad.call_sint_long(put, S, K, r, T))
 # print(Paridad.call_sint_short(put, S, K, r, T))
 
-print(Paridad.put_sint_short(call, S, K, r, T))
+# print(Paridad.put_sint_short(call, S, K, r, T))
 
-print(Paridad.put_sint_long(call, S, K, r, T))
+# print(Paridad.put_sint_long(call, S, K, r, T))
